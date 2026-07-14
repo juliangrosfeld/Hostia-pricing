@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hostia — Pricing</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy: #0D1B4B;
+      --teal: #2DD4BF;
+      --teal-light: #CCFBF1;
+      --cream: #F8F7F4;
+      --text-dark: #0D1B4B;
+      --text-mid: #4B5563;
+      --text-light: #9CA3AF;
+      --border: #E5E7EB;
+      --white: #FFFFFF;
+    }
+
+    body { font-family: 'Inter', sans-serif; background: var(--cream); color: var(--text-dark); }
+
+    nav { background: var(--navy); padding: 16px 48px; display: flex; align-items: center; }
+    .logo-wrap { display: flex; align-items: center; gap: 11px; }
+    .logo-img { height: 34px; width: auto; display: block; }
+    .logo-text-group { display: flex; flex-direction: column; line-height: 1; }
+    .logo-name { color: var(--white); font-size: 19px; font-weight: 700; letter-spacing: -0.3px; }
+    .logo-byline { color: rgba(255,255,255,0.42); font-size: 10.5px; font-weight: 400; letter-spacing: 0.4px; margin-top: 3px; }
+
+    .hero { background: var(--navy); padding: 60px 48px 72px; text-align: center; }
+    .eyebrow {
+      display: inline-block; background: rgba(45,212,191,0.14); color: var(--teal);
+      font-size: 11px; font-weight: 600; letter-spacing: 1.1px; text-transform: uppercase;
+      padding: 5px 14px; border-radius: 100px; margin-bottom: 20px; border: 1px solid rgba(45,212,191,0.22);
+    }
+    .hero h1 {
+      color: var(--white); font-size: clamp(30px, 5vw, 50px); font-weight: 700;
+      line-height: 1.1; letter-spacing: -1px; max-width: 580px; margin: 0 auto 14px;
+    }
+    .hero h1 em { color: var(--teal); font-style: normal; }
+    .hero p { color: rgba(255,255,255,0.55); font-size: 15px; max-width: 440px; margin: 0 auto; line-height: 1.65; }
+
+    main { max-width: 1040px; margin: 0 auto; padding: 56px 24px 88px; }
+
+    .features-card {
+      background: var(--white); border: 1px solid var(--border); border-radius: 14px;
+      padding: 36px 40px; margin-bottom: 52px; box-shadow: 0 1px 4px rgba(13,27,75,0.05);
+    }
+    .features-card h2 { font-size: 18px; font-weight: 700; margin-bottom: 3px; }
+    .features-card .sub { font-size: 13.5px; color: var(--text-mid); margin-bottom: 28px; }
+    .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 13px 28px; }
+    .feat { display: flex; align-items: flex-start; gap: 9px; font-size: 13.5px; line-height: 1.45; }
+    .check-icon {
+      flex-shrink: 0; width: 17px; height: 17px; background: var(--teal-light);
+      border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-top: 1px;
+    }
+    .check-icon svg { width: 9px; height: 9px; }
+
+    .section-label {
+      display: inline-block; background: var(--navy); color: var(--white);
+      font-size: 10.5px; font-weight: 600; letter-spacing: 0.7px; text-transform: uppercase;
+      padding: 4px 11px; border-radius: 5px; margin-bottom: 8px;
+    }
+    .section-title { font-size: 24px; font-weight: 700; letter-spacing: -0.4px; margin-bottom: 5px; }
+    .section-sub { font-size: 13.5px; color: var(--text-mid); margin-bottom: 22px; }
+
+    /* CALCULATOR */
+    .calc {
+      background: var(--navy); border-radius: 14px; padding: 32px 36px; margin-bottom: 28px;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: center;
+    }
+    .calc-left .calc-label {
+      color: var(--teal); font-size: 11px; font-weight: 600; letter-spacing: 1px;
+      text-transform: uppercase; margin-bottom: 12px;
+    }
+    .calc-input-row { display: flex; align-items: center; gap: 14px; }
+    .calc-stepper {
+      width: 34px; height: 34px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.22);
+      background: rgba(255,255,255,0.06); color: var(--white); font-size: 20px; font-weight: 500;
+      cursor: pointer; display: flex; align-items: center; justify-content: center; line-height: 1;
+      transition: background 0.12s; flex-shrink: 0;
+    }
+    .calc-stepper:hover { background: rgba(255,255,255,0.14); }
+    .calc-input {
+      width: 110px; background: var(--white); border: none; border-radius: 8px;
+      padding: 12px 14px; font-family: inherit; font-size: 22px; font-weight: 700;
+      color: var(--navy); text-align: center; -moz-appearance: textfield;
+    }
+    .calc-input::-webkit-outer-spin-button, .calc-input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+    .calc-input:focus { outline: 2px solid var(--teal); }
+    .calc-hint { color: rgba(255,255,255,0.45); font-size: 12.5px; margin-top: 12px; }
+    .calc-slider { width: 100%; margin-top: 18px; accent-color: var(--teal); cursor: pointer; }
+
+    .calc-right {
+      background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 12px; padding: 22px 26px;
+    }
+    .calc-line { display: flex; justify-content: space-between; align-items: baseline; font-size: 13px; color: rgba(255,255,255,0.6); margin-bottom: 9px; }
+    .calc-line span:last-child { color: var(--white); font-weight: 500; }
+    .calc-divider { height: 1px; background: rgba(255,255,255,0.12); margin: 14px 0; }
+    .calc-total-row { display: flex; justify-content: space-between; align-items: baseline; }
+    .calc-total-label { color: var(--white); font-size: 14px; font-weight: 600; }
+    .calc-total {
+      color: var(--teal); font-size: 30px; font-weight: 700; letter-spacing: -0.5px; line-height: 1;
+    }
+    .calc-total small { font-size: 14px; font-weight: 500; color: rgba(255,255,255,0.5); }
+    .calc-tier-tag {
+      display: inline-block; background: rgba(45,212,191,0.16); color: var(--teal);
+      font-size: 11px; font-weight: 600; padding: 3px 9px; border-radius: 5px; margin-top: 4px;
+    }
+    .calc-custom-note { color: rgba(255,255,255,0.7); font-size: 13.5px; line-height: 1.5; }
+
+    .table-card {
+      background: var(--white); border: 1px solid var(--border); border-radius: 14px;
+      overflow: hidden; box-shadow: 0 1px 4px rgba(13,27,75,0.05);
+    }
+    table { width: 100%; border-collapse: collapse; }
+    thead th {
+      background: var(--navy); color: rgba(255,255,255,0.65); font-size: 10.5px; font-weight: 600;
+      letter-spacing: 0.9px; text-transform: uppercase; padding: 13px 26px; text-align: left; white-space: nowrap;
+    }
+    thead th:last-child { text-align: right; }
+    tbody tr { border-bottom: 1px solid var(--border); transition: background 0.12s; }
+    tbody tr:last-child { border-bottom: none; }
+    tbody tr:hover { background: #F9FAFB; }
+    tbody tr.active-tier { background: var(--teal-light); }
+    tbody tr.active-tier:hover { background: #b8f5e8; }
+    tbody td { padding: 16px 26px; font-size: 13.5px; vertical-align: middle; }
+    .rn { color: var(--text-light); font-size: 11.5px; width: 44px; }
+    .staff { font-weight: 600; font-size: 14.5px; white-space: nowrap; }
+    .price-cell { text-align: right; white-space: nowrap; }
+    .base-price { font-weight: 700; font-size: 14.5px; color: var(--navy); }
+    .per-user { font-size: 12px; color: var(--text-mid); font-weight: 400; }
+    .custom-pill {
+      display: inline-block; background: var(--teal-light); color: #0F766E;
+      font-size: 12px; font-weight: 600; padding: 4px 12px; border-radius: 100px;
+    }
+
+    .notes { display: flex; gap: 20px; flex-wrap: wrap; margin-top: 20px; }
+    .note { display: flex; align-items: center; gap: 7px; font-size: 12.5px; color: var(--text-mid); }
+    .dot { width: 5px; height: 5px; background: var(--teal); border-radius: 50%; flex-shrink: 0; }
+
+    .cta {
+      background: var(--navy); border-radius: 14px; padding: 36px 40px; margin-top: 52px;
+      display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap;
+    }
+    .cta h3 { color: var(--white); font-size: 19px; font-weight: 700; margin-bottom: 3px; }
+    .cta p { color: rgba(255,255,255,0.5); font-size: 13.5px; }
+    .btn {
+      background: var(--teal); color: var(--navy); font-size: 14px; font-weight: 700;
+      padding: 13px 26px; border: none; border-radius: 8px; cursor: pointer; white-space: nowrap;
+    }
+    .btn:hover { background: #22C4AD; }
+
+    .footer { text-align: center; margin-top: 44px; font-size: 12px; color: var(--text-light); }
+    .footer strong { color: var(--navy); }
+
+    @media (max-width: 760px) {
+      nav, .hero { padding-left: 20px; padding-right: 20px; }
+      main { padding: 36px 16px 64px; }
+      .features-card, .cta { padding: 24px 20px; }
+      .features-grid { grid-template-columns: 1fr 1fr; }
+      .calc { grid-template-columns: 1fr; gap: 24px; padding: 26px 22px; }
+      thead th, tbody td { padding: 12px 14px; }
+      .table-card { overflow-x: auto; }
+      .per-user { display: block; margin-top: 2px; }
+      .price-cell { white-space: normal; }
+    }
+    @media (max-width: 460px) { .features-grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="logo-wrap">
+    <img class="logo-img" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAA7oAAARtCAYAAAB7mDl0AAAokElEQVR4nO3dwXbbyJZFQdqr//+X1YMqv7JlJERSJIDcGTHskQZd592tJOXbDQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAKj4cfYP8JWPj4+Ps38GgCv78ePH5bccZuceAfjPDLfHz7N/AACAKxO5AH+aYReFLgDAjhleLgD4k9AFAAAgRegCAACQInQBAABIEboAAACkCF0AAABShC4AAAApQhcAAIAUoQsAAECK0AUAACBF6AIAAJAidAEAAEgRugAAAKQIXQAAAFKELgAAAClCFwAAgBShCwAAQIrQBQAAIEXoAgAAkCJ0AQAASBG6AAAApAhdAAAAUoQuAAAAKUIXAACAFKELAABAitAFAAAgRegCAACQInQBAABIEboAAACkCF0AAABShC4AAAApQhcAAIAUoQsAAECK0AUAACBF6AIAAJAidAEAAEgRugAAAKQIXQAAAFKELgAAAClCFwAAgBShCwAAQIrQBQAAIEXoAgAAkCJ0AQAASBG6AAAApAhdAAAAUoQuAAAAKUIXAACAFKELAABAitAFAAAgRegCAACQInQBAABIEboAAACkCF0AAABShC4AAAApQhcAAIAUoQsAAECK0AUAACBF6AIAAJAidAEAAEgRugAAAKQIXQAAAFKELgAAAClCFwAAgBShCwAAQIrQBQAAIEXoAgAAkCJ0AQAASBG6AAAApAhdAAAAUoQuAAAAKUIXAACAFKELAABAitAFAAAgRegCAACQInQBAABIEboAAACkCF0AAABShC4AAAApQhcAAIAUoQsAAECK0AUAACBF6AIAAJAidAEAAEgRugAAAKQIXQAAAFKELgAAAClCFwAAgBShCwAAQIrQBQAAIEXoAgAAkCJ0AQAASBG6AAAApAhdAAAAUoQuAAAAKUIXAACAFKELAABAitAFAAAgRegCAACQInQBAABIEboAAACkCF0AAABShC4AAAApQhcAAIAUoQsAAECK0AUAACBF6AIAAJAidAEAAEgRugAAAKQIXQAAAFKELgAAAClCFwAAgBShCwAAQIrQBQAAIEXoAgAAkCJ0AQAASBG6AAAApAhdAAAAUoQuAAAAKUIXAACAFKELAABAitAFAAAgRegCAACQInQBAABIEboAAACkCF0AAABShC4AAAApQhcAAIAUoQsAAECK0AUAACBF6AIAAJAidAEAAEgRugAAAKQIXQAAAFKELgAAAClCFwAAgBShCwAAQIrQBQAAIEXoAgAAkCJ0AQAASBG6AAAApAhdAAAAUoQuAAAAKUIXAACAFKELAABAitAFAAAgRegCAACQInQBAABIEboAAACkCF0AAABShC4AAAApQhcAAIAUoQsAAECK0AUAACBF6AIAAJAidAEAAEgRugAAAKQIXQAAAFKELgAAAClCFwAAgBShCwAAQIrQBQAAIEXoAgAAkCJ0AQAASBG6AAAApAhdAAAAUoQuAAAAKUIXAACAFKELAABAitAFAAAgRegCAACQInQBAABIEboAAACkCF0AAABShC4AAAApQhcAAIAUoQsAAECK0AUAACBF6AIAAJAidAEAAEgRugAAAKQIXQAAAFKELgAAAClCFwAAgBShCwAAQIrQBQAAIEXoAgAAkCJ0AQAASBG6AAAApAhdAAAAUoQuAAAAKUIXAACAFKELAABAitAFAAAgRegCAACQInQBAABIEboAAACkCF0AAABShC4AAAApQhcAAIAUoQsAAECK0AUAACBF6AIAAJAidAEAAEgRugAAAKQIXQAAAFKELgAAAClCFwAAgBShCwAAQIrQBQAAIEXoAgAAkCJ0AQAASBG6AAAApAhdAAAAUoQuAAAAKUIXAACAFKELAABAitAFAAAgRegCAACQInQBAABIEboAAACkCF0AAABShC4AAAApQhcAAIAUoQsAAECK0AUAACBF6AIAAJAidAEAAEgRugAAAKQIXQAAAFKELgAAAClCFwAAgBShCwAAQIrQBQAAIEXoAgAAkCJ0AQAASBG6AAAApAhdAAAAUoQuAAAAKUIXAACAFKELAABAitAFAAAgRegCAACQInQBAABIEboAAACkCF0AAABShC4AAAApQhcAAIAUoQsAAECK0AUAACBF6AIAAJAidAEAAEgRugAAAKQIXQAAAFKELgAAAClCFwAAgBShCwAAQIrQBQAAIEXoAgAA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AAAApAhdAAAAUoQuAAAAKUIXAACAFKELAABAitAFAAAgRegCAACQInQBAABIEboAAACkCF0AAABShC4AAAApQhcAAIAUoQsAAECK0AUAACBF6AIAAJAidAEAAEgRugAAAKQIXQAAAFKELgAAAClCFwAAgBShCwAAQIrQBQAAIEXoAgAAkCJ0AQAASBG6AAAApAhdAAAAUoQuAAAAKUIXAACAFKELAABAitAFAAAgRegCAACQInQBAABIEboAAACkCF0AAABShC4AAAApQhcAAIAUoQsAAECK0AUAACBF6AIAAJAidAEAAEgRugAAAKQIXQAAAFKELgAAAClCFwAAgBShCwAAQIrQBQAAIEXoAgAAkCJ0AQAASBG6AAAApAhdAAAAUoQuAAAAKUIXAACAFKELAABAitAFAAAgRegCAACQInQBAABIEboAAACkCF0AAABShC4AAAApQhcAAIAUoQsAAECK0AUAACBF6AIAAJAidAEAAEgRugAAAKQIXQAAAFKELgAAAClCFwAAgBShCwAAQIrQBQAAIEXoAgAAkCJ0AQAASBG6AAAApAhdAAAAUoQuAAAAKUIXAACAFKELAABAitAFAAAgRegCAACQInQBAABIEboAAACkCF0AAABShC4AAAApQhcAAIAUoQsAAECK0AUAACBF6AIAAJAidAEAAEgRugAAAKQIXQAAAFKELgAAAClCFwAAgBShCwAAQIrQBQAAIEXoAgAAkCJ0AQAASBG6AAAApAhdAAAAUoQuAAAAKUIXAACAFKELAABAitAFAAAgRegCAACQInQBAABIEboAAACkCF0AAABShC4AAAApQhcAAIAUoQsAAECK0AUAACBF6AIAAJAidAEAAEgRugAAAKQIXQAAAFKELgAAAClCFwAAgBShCwAAQIrQBQAAIEXoAgAAkCJ0AQAASBG6AAAApAhdAAAAUoQuAAAAKUIXAACAFKELAABAitAFAAAgRegCAACQInQBAABIEboAAACkCF0AAABShC4AAAApQhcAAIAUoQsAAECK0AUA2PDx8fFx9s8AwHOELgAAAClCFwAAgBShCwAAQIrQBQAAIEXoAgAAkCJ0AQAASBG6AACf+KeFAOYmdAEAPvnx48ePs38GAJ4ndAEAAEgRugAAAKQIXQAAAFKELgAAAClCFwAAgBShCwAAQIrQBQAAIEXoAgAAkCJ0AQAASBG6AAAApAhdAAAAUoQuAAAAKUIXAACAFKELAABAitAFAAAgRegCAACQInQBAABIEboAAACkCF0AAABShC4AAAApQhcAAIAUoQsAAECK0AUAACBF6AIAAJAidAEAAEgRugAAAKQIXQAAAFKELgAAAClCFwAAgBShCwAAQIrQBQAAIEXoAgAAkCJ0AQAASBG6AAAApAhdAAAAUoQuAAAAKUIXAACAFKELAABAitAFAAAgRegCAACQInQBAABIEboAAACkCF0AAABShC4AAAApQhcAAIAUoQsAAECK0AUAACBF6AIAAJAidAEAAEgRugAAAKQIXQAAAFKELgAAAClCFwAAgBShCwAAQIrQBQAAIEXoAgAAkCJ0AQAASBG6AACffHx8fJz9MwDwPKELAPDJjx8/fpz9MwDwPKELAABAitAFAAAgRegCAACQInQBADb4ni7AvIQuAAAAKZcPXb9NBfibbYRj+G8N4G+2EQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADjS/wPhWV9KQW7zxgAAAABJRU5ErkJggg==" alt="Hostia logo" />
+    <div class="logo-text-group">
+      <span class="logo-name">Hostia</span>
+      <span class="logo-byline">by GladAI</span>
+    </div>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="eyebrow">Hospitality Training Platform</div>
+  <h1>One plan.<br/><em>Everything included.</em></h1>
+  <p>No feature tiers. No upsells. The full platform from day one — built for hotels, resorts, and hospitality teams.</p>
+</div>
+
+<main>
+
+  <div class="features-card">
+    <h2>Everything included on every plan.</h2>
+    <p class="sub">No feature tiers. No upsells. The full platform from day one.</p>
+    <div class="features-grid">
+      <div class="feat"><div class="check-icon"><svg viewBox="0 0 9 9" fill="none"><path d="M1.5 4.5l2.2 2.2L7.5 2.5" stroke="#0F766E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>AI roleplay scenarios &amp; simulations</div>
+      <div class="feat"><div class="check-icon"><svg viewBox="0 0 9 9" fill="none"><path d="M1.5 4.5l2.2 2.2L7.5 2.5" stroke="#0F766E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Live scoring &amp; coach feedback</div>
+      <div class="feat"><div class="check-icon"><svg viewBox="0 0 9 9" fill="none"><path d="M1.5 4.5l2.2 2.2L7.5 2.5" stroke="#0F766E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>6-module hospitality curriculum</div>
+      <div class="feat"><div class="check-icon"><svg viewBox="0 0 9 9" fill="none"><path d="M1.5 4.5l2.2 2.2L7.5 2.5" stroke="#0F766E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Manager dashboard &amp; reporting</div>
+      <div class="feat"><div class="check-icon"><svg viewBox="0 0 9 9" fill="none"><path d="M1.5 4.5l2.2 2.2L7.5 2.5" stroke="#0F766E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Employee progress tracking</div>
+      <div class="feat"><div class="check-icon"><svg viewBox="0 0 9 9" fill="none"><path d="M1.5 4.5l2.2 2.2L7.5 2.5" stroke="#0F766E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Certifications &amp; assessments</div>
+      <div class="feat"><div class="check-icon"><svg viewBox="0 0 9 9" fill="none"><path d="M1.5 4.5l2.2 2.2L7.5 2.5" stroke="#0F766E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Staff account management</div>
+      <div class="feat"><div class="check-icon"><svg viewBox="0 0 9 9" fill="none"><path d="M1.5 4.5l2.2 2.2L7.5 2.5" stroke="#0F766E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Mobile &amp; desktop access</div>
+      <div class="feat"><div class="check-icon"><svg viewBox="0 0 9 9" fill="none"><path d="M1.5 4.5l2.2 2.2L7.5 2.5" stroke="#0F766E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Cloud hosting &amp; security</div>
+      <div class="feat"><div class="check-icon"><svg viewBox="0 0 9 9" fill="none"><path d="M1.5 4.5l2.2 2.2L7.5 2.5" stroke="#0F766E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Platform updates &amp; improvements</div>
+      <div class="feat"><div class="check-icon"><svg viewBox="0 0 9 9" fill="none"><path d="M1.5 4.5l2.2 2.2L7.5 2.5" stroke="#0F766E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Multilingual training (EN/NL/ES/Pap.)</div>
+      <div class="feat"><div class="check-icon"><svg viewBox="0 0 9 9" fill="none"><path d="M1.5 4.5l2.2 2.2L7.5 2.5" stroke="#0F766E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Technical support</div>
+    </div>
+  </div>
+
+  <div class="section-label">Option 1 — No Setup Fee</div>
+  <h2 class="section-title">Monthly Platform Fee</h2>
+  <p class="section-sub">Scale as your team grows. Add or remove staff any time.</p>
+
+  <div class="calc">
+    <div class="calc-left">
+      <div class="calc-label">Estimate your monthly cost</div>
+      <div class="calc-input-row">
+        <button class="calc-stepper" id="minus" aria-label="Decrease staff">−</button>
+        <input class="calc-input" id="staffInput" type="number" min="1" max="500" value="25" />
+        <button class="calc-stepper" id="plus" aria-label="Increase staff">+</button>
+        <span style="color:rgba(255,255,255,0.6);font-size:13.5px;">staff members</span>
+      </div>
+      <input class="calc-slider" id="staffSlider" type="range" min="1" max="260" value="25" />
+      <div class="calc-hint">Drag the slider or type a number. Pricing reflects Option 1 — No Setup Fee.</div>
+    </div>
+    <div class="calc-right" id="calcResult">
+      <!-- filled by JS -->
+    </div>
+  </div>
+
+  <div class="table-card">
+    <table>
+      <thead>
+        <tr>
+          <th style="width:44px"></th>
+          <th>Staff Members</th>
+          <th style="text-align:right">Monthly Platform Fee</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr data-tier="0"><td class="rn">1</td><td><span class="staff">1–10</span></td><td class="price-cell"><span class="base-price">$249</span><span class="per-user">/month + $15 per active user</span></td></tr>
+        <tr data-tier="1"><td class="rn">2</td><td><span class="staff">11–20</span></td><td class="price-cell"><span class="base-price">$349</span><span class="per-user">/month + $15 per active user</span></td></tr>
+        <tr data-tier="2"><td class="rn">3</td><td><span class="staff">21–30</span></td><td class="price-cell"><span class="base-price">$449</span><span class="per-user">/month + $15 per active user</span></td></tr>
+        <tr data-tier="3"><td class="rn">4</td><td><span class="staff">31–50</span></td><td class="price-cell"><span class="base-price">$599</span><span class="per-user">/month + $15 per active user</span></td></tr>
+        <tr data-tier="4"><td class="rn">5</td><td><span class="staff">51–75</span></td><td class="price-cell"><span class="base-price">$799</span><span class="per-user">/month + $15 per active user</span></td></tr>
+        <tr data-tier="5"><td class="rn">6</td><td><span class="staff">76–100</span></td><td class="price-cell"><span class="base-price">$999</span><span class="per-user">/month + $15 per active user</span></td></tr>
+        <tr data-tier="6"><td class="rn">7</td><td><span class="staff">101–150</span></td><td class="price-cell"><span class="base-price">$1,299</span><span class="per-user">/month + $15 per active user</span></td></tr>
+        <tr data-tier="7"><td class="rn">8</td><td><span class="staff">151–250</span></td><td class="price-cell"><span class="base-price">$1,799</span><span class="per-user">/month + $15 per active user</span></td></tr>
+        <tr data-tier="8"><td class="rn">9</td><td><span class="staff">250+</span></td><td class="price-cell"><span class="custom-pill">Custom — let's talk</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="notes">
+    <div class="note"><span class="dot"></span>Billed monthly, cancel anytime</div>
+    <div class="note"><span class="dot"></span>No setup fee on this plan</div>
+    <div class="note"><span class="dot"></span>Active users counted per billing cycle</div>
+    <div class="note"><span class="dot"></span>250+ staff? We'll build a custom quote</div>
+  </div>
+
+  <div class="cta">
+    <div>
+      <h3>Ready to train your team?</h3>
+      <p>Full platform access from day one. No setup fee required.</p>
+    </div>
+    <button class="btn">Get Started →</button>
+  </div>
+
+  <p class="footer">Powered by <strong>GladAI</strong> · Curaçao</p>
+
+</main>
+
+<script>
+  // Tiers: [maxStaff, baseFee, label]. Last is custom.
+  var TIERS = [
+    { max: 10,  base: 249,  label: '1–10' },
+    { max: 20,  base: 349,  label: '11–20' },
+    { max: 30,  base: 449,  label: '21–30' },
+    { max: 50,  base: 599,  label: '31–50' },
+    { max: 75,  base: 799,  label: '51–75' },
+    { max: 100, base: 999,  label: '76–100' },
+    { max: 150, base: 1299, label: '101–150' },
+    { max: 250, base: 1799, label: '151–250' }
+  ];
+  var PER_USER = 15;
+
+  var input = document.getElementById('staffInput');
+  var slider = document.getElementById('staffSlider');
+  var result = document.getElementById('calcResult');
+  var rows = document.querySelectorAll('tbody tr[data-tier]');
+
+  function fmt(n) { return n.toLocaleString('en-US'); }
+
+  function tierIndexFor(staff) {
+    for (var i = 0; i < TIERS.length; i++) {
+      if (staff <= TIERS[i].max) return i;
+    }
+    return 8; // custom (250+)
+  }
+
+  function highlightRow(idx) {
+    rows.forEach(function (r) {
+      r.classList.toggle('active-tier', parseInt(r.dataset.tier, 10) === idx);
+    });
+  }
+
+  function render(staff) {
+    var idx = tierIndexFor(staff);
+    highlightRow(idx);
+
+    if (idx === 8) {
+      result.innerHTML =
+        '<div class="calc-label" style="color:var(--teal);font-size:11px;font-weight:600;letter-spacing:1px;text-transform:uppercase;margin-bottom:10px;">Enterprise</div>' +
+        '<div class="calc-custom-note">For teams of <strong style="color:#fff;">250+</strong>, we build a custom quote tailored to your group. Reach out and we\'ll put together pricing that fits.</div>' +
+        '<div class="calc-tier-tag">Custom plan</div>';
+      return;
+    }
+
+    var t = TIERS[idx];
+    var users = staff * PER_USER;
+    var total = t.base + users;
+
+    result.innerHTML =
+      '<div class="calc-line"><span>Platform fee (' + t.label + ')</span><span>$' + fmt(t.base) + '</span></div>' +
+      '<div class="calc-line"><span>' + staff + ' active users × $' + PER_USER + '</span><span>$' + fmt(users) + '</span></div>' +
+      '<div class="calc-divider"></div>' +
+      '<div class="calc-total-row"><span class="calc-total-label">Estimated monthly</span>' +
+      '<span class="calc-total">$' + fmt(total) + '<small>/mo</small></span></div>' +
+      '<div class="calc-tier-tag">Tier: ' + t.label + ' staff</div>';
+  }
+
+  function clamp(v) {
+    v = parseInt(v, 10);
+    if (isNaN(v) || v < 1) v = 1;
+    if (v > 500) v = 500;
+    return v;
+  }
+
+  function update(staff) {
+    staff = clamp(staff);
+    input.value = staff;
+    // slider maxes at 260 to represent the 250+ band
+    slider.value = staff > 260 ? 260 : staff;
+    render(staff);
+  }
+
+  input.addEventListener('input', function () { update(input.value); });
+  slider.addEventListener('input', function () { update(slider.value); });
+  document.getElementById('plus').addEventListener('click', function () { update(clamp(input.value) + 1); });
+  document.getElementById('minus').addEventListener('click', function () { update(clamp(input.value) - 1); });
+
+  // init
+  update(25);
+</script>
+
+</body>
+</html>
