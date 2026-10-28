@@ -1,0 +1,10 @@
+{
+  "redirects": [
+    {
+      "source": "/(.*)",
+      "has": [{ "type": "host", "value": "hostia-pricing.vercel.app" }],
+      "destination": "https://pricing.hosdia.com/$1",
+      "permanent": false
+    }
+  ]
+}
